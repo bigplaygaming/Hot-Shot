@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Giveaway Bonus</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="https://i.imgur.com/f1lrrXV.png">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- Flag Icons -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f0f0;
+            margin: 0;
+        }
+
+        .header {
+            background-color: #4267B2;
+            color: white;
+            padding: 8px;
+            font-weight: bold;
+        }
+
+        .container {
+            margin-top: 20px;
+        }
+
+        .app-section {
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .app-icon {
+            width: 90px;
+            height: 90px;
+            border-radius: 10px;
+            margin-right: 20px;
+        }
+
+        .claim-btn {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .activityItem {
+            border-bottom: 1px solid #ddd;
+            padding: 8px 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .flag-icon {
+            width: 20px;
+            height: 15px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="header">facebook</div>
+
+<div class="container">
+
+    <h3 class="text-center"><b>Welcome to Our Best Casino Apps Bonus Collection</b></h3>
+
+    <p class="text-center">
+        Congratulations! You are today's lucky player –
+        <strong>
+            <script>
+                const d = new Date();
+                const months = ["January","February","March","April","May","June",
+                                "July","August","September","October","November","December"];
+                document.write(months[d.getMonth()] + " " + d.getDate() + ", " + d.getFullYear());
+            </script>
+        </strong>
+    </p>
+
+    <!-- Bonus App -->
+    <div class="app-section">
+        <img src="https://i.imgur.com/aaTkx9a.jpeg" class="app-icon">
+        <div style="flex:1">
+            <h4>Hot Shot Casino Slots</h4>
+            <p>Enjoy exciting casino games and exclusive daily bonuses.</p>
+        </div>
+        <button class="claim-btn"
+            onclick="window.location.href='https://magadownloads.com/1124493';">
+            Claim Bonus
+        </button>
+    </div>
+
+    <!-- Recent Activity -->
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Recent Activity
+            <span id="onlineActivity" class="glyphicon glyphicon-record text-success hidden"></span>
+        </div>
+        <div class="panel-body" id="activityBody">
+            <p id="loadingActivity" class="text-center">Loading activity...</p>
+        </div>
+    </div>
+
+    <p class="text-center text-danger" style="font-size:12px;">
+        Claim your bonus now before it expires!
+    </p>
+
+</div>
+
+<!-- jQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+<script>
+$(function () {
+
+    const users = ['Alex91', 'LuckyStar', 'CasinoFan', 'Nicolas Cert', 'GoldWin'];
+    const countries = ['us', 'gb', 'fr', 'de', 'ca', 'au', 'us'];
+
+    // Assign a fixed country to each user
+    const userFlags = {};
+    users.forEach(user => {
+        const country = countries[Math.floor(Math.random() * countries.length)];
+        userFlags[user] = country;
+    });
+
+    // Queue to rotate users one by one
+    let userQueue = [...users];
+
+    setInterval(function () {
+
+        $('#loadingActivity').hide();
+        $('#onlineActivity').removeClass('hidden');
+
+        // Remove oldest if more than 4 visible
+        if ($('.activityItem').length > 4) {
+            $('.activityItem').first().remove();
+        }
+
+        // Take next user from queue
+        const user = userQueue.shift();
+        const country = userFlags[user];
+
+        // Generate random minutes between 1 and 5
+        const minutesAgo = Math.floor(Math.random() * 5) + 1;
+
+        $('#activityBody').append(
+            '<div class="activityItem">' +
+                '<span class="flag-icon flag-icon-' + country + '"></span>' +
+                '<strong>' + user + '</strong> (' + minutesAgo + ' minutes ago) just claimed a bonus' +
+            '</div>'
+        );
+
+        // Push user back to the end of the queue for continuous rotation
+        userQueue.push(user);
+
+    }, 2500);
+
+});
+</script>
+
+</body>
+</html>
